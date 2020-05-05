@@ -18,6 +18,8 @@ public class NodoDE {
         this.dato = dato;
     }
 
+    
+
     public Infante getDato() {
         return dato;
     }
@@ -41,6 +43,8 @@ public class NodoDE {
     public void setAnterior(NodoDE anterior) {
         this.anterior = anterior;
     }
+
+   
     
     
     

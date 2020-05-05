@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:growl id="grwlErrores"/>
+        <h:form id="frmLogin">
+            <p:commandButton value="Ocultar/mostrar" action="#{loginBean.habilitarOdeshabilitarLogin()}" 
+                             update="pnlLogin" immediate="true"   />
+
+            <p:commandButton value="Ver Modal Login" immediate="true"
+                             action="#{loginBean.aumentarContadorSaludos()}"
+                             oncomplete="PF('dlgModalLogin').show();" 
+                             update="panelModalLogin"/>
+
+            <p:inputText value="#{loginBean.textoSaludo}"/>
+
+            <h:panelGroup id="pnlLogin" >
+                <p:panel  rendered="#{loginBean.verPanelLogin}"  header="Login">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel for="txtCorreo"  value="Correo:"/>
+                        <p:inputText id="txtCorreo" required="true"
+                                     value="#{loginBean.correo}"/>
+                        <p:outputLabel for="txtPassword" value="Contraseña:"/>
+                        <p:password id="txtPassword" required="true"
+                                     value="#{loginBean.contrasenia}"/>                        
+                    </p:panelGrid>
+                    <p:commandButton value="Ingresar"
+                                     action="#{loginBean.ingresar()}"
+                                     update="@all"/>
+                    
+
+                </p:panel>
+            </h:panelGroup>
+
+            <p:dialog id="modalLogin" header="Modal Login" widgetVar="dlgModalLogin">
+                <h:panelGroup id="panelModalLogin">
+                    <p:outputLabel value="Hola #{loginBean.textoSaludo}"/>
+                    <br/>
+                    <p:outputLabel value="Saludo #{loginBean.contadorSaludos}"/>
+                    <br/>
+                    <p:commandButton value="Ver panel Login" 
+                                     action="#{loginBean.habilitarOdeshabilitarLogin()}" 
+                                     update="pnlLogin"
+                                     oncomplete="PF('dlgModalLogin').hide();"/>
+                    <p:commandButton value="Cerrar Modal" onclick="PF('dlgModalLogin').hide();"/>
+
+                </h:panelGroup>
+
+
+            </p:dialog>
+        </h:form>
+
+
+    </h:body>
+</html>
+
