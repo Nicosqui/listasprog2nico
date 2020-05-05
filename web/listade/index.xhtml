@@ -107,6 +107,7 @@
                                          update="frmInfante,:grwlErrores"
                                          />
                     </p:panel>
+                    <h:panelGroup>
                     <p:panel header="Reportes">
                         <p:outputLabel value="Promedio de Edad de los infantes: #{sesionInfanteDE.listaInfantes.promediarEdades()}"/>
                         <br/>
@@ -119,8 +120,12 @@
                             <p:outputLabel value="#{sesionInfanteDE.listaInfantes.contarInfantesxGenero(false)}"/>
                         </h:panelGrid>
                     </p:panel>
-
-
+                    <p:commandButton value="Ver Infante Menor"                                    
+                                    action="#{sesionInfanteDE.obtenerInfanteMenor()}" 
+                                    update="panelInfante"                                    
+                                    oncomplete="PF('dlgDatosInfante').show();" />
+                    
+                    </h:panelGroup>
                 </p:panelGrid>
 
                 <p:panel header="Gráfico" id="pnlVista" style="width: 100%;">
@@ -189,6 +194,11 @@
                                     action="#{sesionInfanteDE.obtenerInfanteDiagrama()}" 
                                     update="panelInfante"                                    
                                     oncomplete="PF('dlgDatosInfante').show();" />
+                        
+                        <p:menuitem value="Ver posicion"   
+                                    action="#{sesionInfanteDE.obtenerPosicionInfante()}" 
+                                    update="panelPosicion"                                    
+                                    oncomplete="PF('dlgPosicionInfante').show();" />
                         <p:menuitem value="Eliminar"/>
                         <p:menuitem value="Enviar al final" update="pnlVista"                                    
                                     action="#{sesionInfanteDE.enviarAlFinal()}"/>
@@ -215,6 +225,14 @@
                     
                 </p:panel>
             </p:dialog> 
+            
+            <p:dialog id="posicionInfante" header="Ver posicion infnate" widgetVar="dlgPosicionInfante"
+                modal="true" height="50">
+                <h:panelGroup id="panelPosicion">
+                    <p:outputLabel value="Posicion #{sesionInfanteDE.posicionInfante}"/>
+                </h:panelGroup>
+                          
+            </p:dialog>                    
         </h:form>
 
     </h:body>

@@ -258,5 +258,46 @@ public class ListaDE implements Serializable{
         throw new InfanteExcepcion("La lista de infantes está vacía");
     }
     
+     
+    public Infante obtenerInfanteMenorEdad() throws InfanteExcepcion
+    {
+        if (cabeza !=null)
+        {
+            Infante menor = cabeza.getDato();
+            NodoDE temp = cabeza;
+            while(temp !=null )
+            {
+               if(temp.getDato().getEdad()< menor.getEdad())
+               {
+                   menor = temp.getDato();
+               }
+               temp = temp.getSiguiente();
+            }
+            
+            return menor;
+        }
+        throw new InfanteExcepcion("La lista de Infantes està vacia");
+    }
     
+    
+    public int obtenerPosicionInfante(short codigo ) throws InfanteExcepcion
+    {
+        if (cabeza !=null)
+        {
+            int cont = 1;
+            NodoDE temp = cabeza;
+            while(temp !=null)
+            {
+                if(temp.getDato().getCodigo()== codigo)
+                {
+                    return cont;
+                }
+                temp = temp.getSiguiente();
+                cont++;
+            }
+            throw new InfanteExcepcion("El codigo ingresado no existe");
+            
+        }
+        throw new InfanteExcepcion("La lista de Infantes està vacia");
+    }
 }
